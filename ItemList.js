@@ -1,13 +1,14 @@
 {
   // keys
-  const ls = localStorage,  {stringify, parse} = JSON
+  const ls = localStorage,  {stringify, parse} = JSON,
+       {keys, fromEntries, assign} = Object
 
   ItemList = class ItemList extends Array {
     constructor (name, templateObj={}, options={}) {
       super()
       this.name = name
       this.template = templateObj
-      ItemList.dict[name] = this
+      if ('string' == typeof name) ItemList.dict[name] = this
     }
 
     add(...props) {
@@ -38,6 +39,9 @@
 
   }
 
-  const names = Object.keys(localStorage).map(key => /^ItemList_(.*)/.exec(key)).filter(Boolean).map(keyParts => keyParts[1])
   ItemList.dict = {}
+
+  const names = keys(localStorage).map(key => /^ItemList_(.*)/.exec(key))
+                  .filter(Boolean).map(keyParts => keyParts[1])
+  names.forEach(name => new ItemList(name).load())
 }
