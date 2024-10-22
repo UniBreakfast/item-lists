@@ -6,7 +6,6 @@
         $$ = sel => doc.querySelectorAll(sel),
         compare =(a, b)=> stringify(a)==stringify(b)
 
-
   ItemList = class ItemList extends Array {
     constructor (name, templateObj={}, options={}) {
       super()
@@ -54,9 +53,6 @@
         .forEach(list => list.change?.apply(this) ||
                           this.splice(0, this.length, ...list))
     }
-
-
-
   }
 
   ItemList.dict = {}

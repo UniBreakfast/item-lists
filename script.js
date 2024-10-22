@@ -3,7 +3,7 @@ const doc = document,  {head, body} = doc,
       crEl =(tag,...props)=> doc.createElement(tag).change(...props),
       range =(from, to)=> [...Array(to).keys()].map(n => n+from),
       mapArr =(len, fn, thisArg)=> Array.from(range(0, len), fn, thisArg)
-
+const [section, div] = body.children
 
 assign(Element.prototype, {
   class: function (className, n) { const classes = className.split(' ')
@@ -66,7 +66,14 @@ templateObj = {name: 'unnamed', age: null, gender: null}
 
 options = {}
 
-// people = new ItemList('people', templateObj, options)
+people = new ItemList('people', templateObj, options)
+
+people.items = [
+  {name: 'John', age: 30, gender: 'male'},
+  {name: 'Jane', age: 25, gender: 'female'},
+  {name: 'Mike', age: 40, gender: 'male'},
+  {name: 'Mary', age: 35, gender: 'female'},
+]
 
 people = ItemList.dict.people
 people.props.views = {
@@ -81,3 +88,6 @@ people.props.views = {
     }
   },
 }
+
+people.props.views.section.show(section, people.items)
+people.props.views.div.show(div, people.items)
