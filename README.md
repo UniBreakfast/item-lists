@@ -1,4 +1,4 @@
-# item-lists
+# [item-lists](https://github.com/UniBreakfast/item-lists)
 
 A class ItemList (extending Array) to handle everything concerning lists of items: managing, saving, loading, presenting with markup templates.
 
